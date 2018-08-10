@@ -1,0 +1,30 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.index),
+    path('photo/', views.photo),
+    path('activity/<int:id>/', views.activity),
+    path('activityPhotos/',views.activityPhotos),
+    path('photoInfo/', views.photoInfo),
+    path('upfile/', views.upfile),
+    path('doupfile/', views.doupfile),
+    path('login/', views.login),
+    path('postLogin/', views.postLogin),
+    path('manage/', views.manage),
+    path('manage/members/', views.members),
+    path('manage/addMember/', views.addMember),
+    path('manage/memberInfo/<int:id>/',views.memberInfo),
+    path('manage/saveMember/',views.saveMember),
+    path('manage/upImageToLocal/<int:memberId>/',views.upImageToLocal),
+    path('manage/delPhoto/<int:id>/',views.delPhoto),
+    path('manage/activities/', views.activities),
+    path('manage/addActivity/', views.addActivity),
+    path('manage/saveActivity/', views.saveActivity),
+    path('manage/activityInfo/<int:id>/', views.activityInfo),
+    path('manage/upActivityImageToLocal/<int:activityId>/',views.upActivityImageToLocal),
+    path('manage/editActivityPhoto/<int:id>/', views.editActivityPhoto),
+    path('manage/delActivityPhoto/<int:id>/',views.delActivityPhoto),
+    path('manage/saveKeyword/<int:id>/', views.saveKeyword),
+    path('manage/delKeyword/<int:id>/', views.delKeyword),
+]
