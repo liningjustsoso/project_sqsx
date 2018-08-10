@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>山清水秀运动管理中心</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metisMenu.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mm-vertical.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <script src="{% static 'js/jquery-3.3.1-jquery.min.js' %}"></script>
+    <script src="{% static 'js/metisMenu.min.js' %}"></script>
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">山清水秀运动管理中心</a>
+    {% if request.user.is_authenticated %}
+    <div class="text-light">当前登录账号：{{ request.user.username }}</div>
+    {% endif %}
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a class="nav-link" href="/logout/">注销</a>
+        </li>
+    </ul>
+</nav>

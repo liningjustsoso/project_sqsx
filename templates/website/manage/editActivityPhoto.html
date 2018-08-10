@@ -1,0 +1,66 @@
+<!-- 头部区域 -->
+{% include 'website/base/header.html' %}
+<!-- 中部区域 -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- 左侧菜单区域 -->
+        <div class="col-md-2">
+            {% include 'website/base/navbar.html' %}
+        </div>
+        <!-- 右侧内容区域 -->
+        <div class="col-md-10" id="main">
+            <div class="text-center p-5">
+                <img src="/static/{{data.url}}" alt="..." width="200" height="150">
+            </div>
+            <div>
+                <h5 class="m-3">关键词列表</h5>
+                <div class="border border-dark m-3 p-3">
+                    <form action="/manage/saveKeyword/{{data.id}}/" method="post"
+                          enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input class="form-control" type="text" name="keyword" required>
+                            <div class="input-group-append">
+                                <input class="btn btn-dark" type="submit" value="保存关键词">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="m-3">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#序号</th>
+                            <th scope="col">关键词</th>
+                            <th scope="col">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for row in keywords %}
+                        <tr class="keyword">
+                            <th scope="row">{{row.id}}</th>
+                            <td>{{row.keyword}}</td>
+                            <td><a href="javascript:void(0)"
+                                   onclick="delKeyword(this,'/manage/delKeyword/{{row.id}}/')">删除</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function delKeyword(e,url){
+        $.getJSON(url, function(data){
+            if(data.code == 'succ'){
+                $(e).parents('.keyword').remove();
+            }else{
+                alert('删除失败');
+            }
+        });
+    }
+</script>
+<!-- 低部区域 -->
+{% include 'website/base/footer.html' %}

@@ -1,0 +1,72 @@
+<!-- 头部区域 -->
+{% include 'website/base/header.html' %}
+<!-- 中部区域 -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- 左侧菜单区域 -->
+        <div class="col-md-2">
+            {% include 'website/base/navbar.html' %}
+        </div>
+        <!-- 右侧内容区域 -->
+        <div class="col-md-10" id="main">
+            <h3 class="text-center p-5">{{data.name}}</h3>
+            <div>
+                <h5 class="m-3">照片列表</h5>
+                <div class="border border-dark m-3 p-3">
+                    <form action="/manage/upActivityImageToLocal/{{data.id}}/" method="post"
+                          enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <input type="file" name="file" required>
+                        <input class="btn btn-dark" type="submit" value="上传图片">
+                    </form>
+                </div>
+                <div class="m-3">
+                    {% for row in photos %}
+                    <div class="rounded float-left mr-3 mb-3 text-center photo" style="width:200px;height:200px;">
+                        <img src="/static/{{row.url}}" alt="..." width="200" height="150">
+                        <div>
+                            <a href="/manage/editActivityPhoto/{{row.id}}/">编辑</a>
+                            <a href="javascript:void(0)" onclick="delActivityPhoto(this,'/manage/delActivityPhoto/{{row.id}}/')">删除</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function delActivityPhoto(e,urls){
+    $.getJSON(urls, function(data){
+        if(data.code == 'succ'){
+            $(e).parents(".photo").remove();
+        }else{
+            alert('删除失败');
+        }
+    });
+}
+
+</script>
+<script>
+// 验证脚本
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+</script>
+<!-- 低部区域 -->
+{% include 'website/base/footer.html' %}

@@ -1,0 +1,42 @@
+<!-- 头部区域 -->
+{% include 'website/base/header.html' %}
+<!-- 中部区域 -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- 左侧菜单区域 -->
+        <div class="col-md-2">
+            {% include 'website/base/navbar.html' %}
+        </div>
+        <!-- 右侧内容区域 -->
+        <div class="col-md-10" id="main">
+            <div>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">姓名</th>
+                        <th scope="col">手机号</th>
+                        <th scope="col">性别</th>
+                        <th scope="col">年龄</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <th scope="row">{{row.id}}</th>
+                        <td><a href="/manage/memberInfo/{{row.id}}/">{{row.username}}</a></td>
+                        <td>{{row.cellphone}}</td>
+                        <td>{{row.sex}}</td>
+                        <td>{{row.age}}</td>
+                        <td><a href="/manage/memberInfo/{{row.id}}/">查看详情</a></td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 低部区域 -->
+{% include 'website/base/footer.html' %}

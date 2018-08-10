@@ -1,0 +1,20 @@
+<!-- 左侧菜单区域 -->
+<nav class="sidebar-nav sidebar">
+    <div class="sidebar-sticky bg-dark">
+        <ul class="metismenu" id="menu">
+            <li>
+                <a class="has-arrow" href="#" aria-expanded="false">会员管理</a>
+                <ul class="collapse in">
+                    <li><a href="/manage/addMember/">新增会员</a></li>
+                    <li><a href="/manage/members/">会员列表</a></li>
+                    <li><a href="/manage/activities/">活动管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+    $(function(){
+        $("#menu").metisMenu();
+    })
+</script>
